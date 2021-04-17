@@ -17,7 +17,7 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
     if first==str(1):
         emailMsg='Welcome to email thread for FitBit Charge 4 Amazon Price Tracker. Current price is:'+current_status+'\n'+'Visit https://www.amazon.in/Fitbit-Charge-Fitness-Tracker-Non-NFC/dp/B084CQ41M2/ref=sr_1_8?dchild=1&keywords=fitbit%2Bcharge%2B3&qid=1608032936&sr=8-8&th=1 for more details.'          #change the body here for first mail
         mimeMessage = MIMEMultipart()
-        mimeMessage['to'] = 'sudb97@outlook.com'                                #change the recipient of the mail
+        mimeMessage['to'] = 'iotstreetlight@gmail.com'                                #change the recipient of the mail
         mimeMessage['subject'] = 'FitBit Charge 4 Amazon Price Tracker'         #Change the subject for the 1st mail
         mimeMessage.attach(MIMEText(emailMsg, 'plain'))
         raw_string = base64.urlsafe_b64encode(mimeMessage.as_bytes()).decode()
@@ -29,8 +29,8 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
     else:
         msg_id,ref_id=retrive_ids.get_mime_ids(msid)
         message = MIMEText('There is an update: '+current_status+'\n'+'Please visit https://www.amazon.in/Fitbit-Charge-Fitness-Tracker-Non-NFC/dp/B084CQ41M2/ref=sr_1_8?dchild=1&keywords=fitbit%2Bcharge%2B3&qid=1608032936&sr=8-8&th=1 for more details.')  #change the body of the threaded mail
-        message['to'] = 'sudb97@outlook.com'                                                #change the recipient of the thread mail
-        message['from'] = 'iem2015f@gmail.com'  
+        message['to'] = 'iotstreetlight@gmail.com'                                                #change the recipient of the thread mail
+        message['from'] = 'parnasankarpan@gmail.com'  
         message['subject'] = 'FitBit Charge 4 Amazon Price Tracker'                         #Change the subject of the threaded mail
         message['In-Reply-To'] = msg_id       
         message['References'] = ref_id       
