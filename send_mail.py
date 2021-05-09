@@ -30,7 +30,7 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
         msg_id,ref_id=retrive_ids.get_mime_ids(msid)
         message = MIMEText('There is an update: '+current_status+'\n'+'Please visit https://www.amazon.in/Fitbit-Charge-Fitness-Tracker-Non-NFC/dp/B084CQ41M2/ref=sr_1_8?dchild=1&keywords=fitbit%2Bcharge%2B3&qid=1608032936&sr=8-8&th=1 for more details.')  #change the body of the threaded mail
         message['to'] = 'iotstreetlight@gmail.com'                                                #change the recipient of the thread mail
-        message['from'] = 'parnasankarpan@gmail.com'  
+        #message['from'] = 'parnasankarpan@gmail.com'                                              #It is redundant
         message['subject'] = 'FitBit Charge 4 Amazon Price Tracker'                         #Change the subject of the threaded mail
         message['In-Reply-To'] = msg_id       
         message['References'] = ref_id       
