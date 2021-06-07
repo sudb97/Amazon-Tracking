@@ -1,4 +1,6 @@
+import smtplib
 from Google import Create_Service
+import base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import six
@@ -12,11 +14,10 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
 
     service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
 
-    if first==str(1):
-        emailMsg='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx'+current_status+'\n'+'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.'          #change the body here for first mail
+    if ft==str(1):
+        mailMessage='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx'+current_status+'\n'+'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.'          #change the body here for first mail
         mimeMessage = MIMEMultipart()
-        mimeMessage['to'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'                                #change the recipient of the mail
-        mimeMessage['subject'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'         #Change the subject for the 1st mail
+        mimeMessage['to'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'                                # recipient of the mail id
         mimeMessage.attach(MIMEText(emailMsg, 'plain'))
         raw_string = base64.urlsafe_b64encode(mimeMessage.as_bytes()).decode()
 
@@ -25,8 +26,8 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
         return message["id"]
 
     else:
-        msg_id,ref_id=retrive_ids.get_mime_ids(msid)
-        message = MIMEText('xxxxxxxxxxxxxxxxxxxxxxxx'+current_status+'\n'+'Please visit https://www.amazon.in/Fitbit-Charge-Fitness-Tracker-Non-NFC/dp/B084CQ41M2/ref=sr_1_8?dchild=1&keywords=fitbit%2Bcharge%2B3&qid=1608032936&sr=8-8&th=1 for more details.')  #change the body of the threaded mail
+        mes_id,ref_id=retrive_ids.get_mime_ids(msid)
+        message = MIMEText('xxxxxxxxxxxxxxxxxxxxxxxx'+current_status+'\n'+'xxxxxxxxxxxxxxxxxxxxx')  #change the body of the threaded mail
         message['to'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'                                                #change the recipient of the thread mail
         message['subject'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'                         #Change the subject of the threaded mail
         message['In-Reply-To'] = msg_id
@@ -39,6 +40,7 @@ def send_thread(current_status,thd_id,msid,first):           #sending email repl
 
         sent=service.users().messages().send(userId='me', body=new_email).execute()
         return sent["id"]
+
 
 
 
