@@ -6,7 +6,7 @@ def update_price(current_status,line_no,date):
 	credentials= ServiceAccountCredentials.from_json_keyfile_name('credentials_sheets.json', scope)
 
 	gc= gspread.authorize(credentials)
-	wks= gc.open('FitBit Tracker').get_worksheet(1)    #change the google sheets database name
+	wks= gc.open('xxxxxxxxxxxxxxxxxxxxxx').get_worksheet(1)    #change the google sheets database name
     
 	
 	wks.update_acell('A'+line_no,str(date))

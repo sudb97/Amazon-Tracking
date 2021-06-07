@@ -6,7 +6,7 @@ def update_info_status(current_status,thd_id,msg_id,first,line_no):         #upd
     credentials= ServiceAccountCredentials.from_json_keyfile_name('credentials_sheets.json', scope)
 
     gc= gspread.authorize(credentials)
-    wks= gc.open('FitBit Tracker').sheet1      #change the google sheets database name
+    wks= gc.open('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx').sheet1      #change the google sheets database name
     
     if first==str(1):
         wks.update_acell('B1',current_status)
@@ -27,7 +27,7 @@ def update_error_status(thd_id,msg_id,first):         #updates the status when e
     credentials= ServiceAccountCredentials.from_json_keyfile_name('credentials_sheets.json', scope)
 
     gc= gspread.authorize(credentials)
-    wks= gc.open('FitBit Tracker').sheet1      #change the google sheets database name
+    wks= gc.open('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx').sheet1      #change the google sheets database name
     
     if first==str(1):
         #wks.update_acell('B1',current_status)
