@@ -23,8 +23,8 @@ while True:
             thd_id,msg_id,first,line_no=prev_status.read_msg_status()
             
             if Decimal(sub(r'[^\d.]', '',cur_stat)) <= 10500.00:
-                msg_id=send_mail.send_thread('The price is '+cur_stat+' at '+str(now),thd_id,msg_id,first)        #sending the mail with updated price if price above threshold
-            
+                #msg_id=send_mail.send_thread('The price is '+cur_stat+' at '+str(now),thd_id,msg_id,first)        #sending the mail with updated price if price above threshold
+               
             update_price_history.update_price(cur_stat,line_no,now)                           #updating the excel sheet with the price to maintain price history                line_no=str(int(line_no)+1)
             line_no=str(int(line_no)+1)
             update_status.update_info_status(cur_stat,msg_id,msg_id,first,line_no)
@@ -40,7 +40,7 @@ while True:
             try:                                     #this part will send email message in case of there is any failure in tracking
                 error_msg="Alert.......................... "+str(now)
                 thd_id,msg_id,first,line_no=prev_status.read_msg_status()
-                msg_id=send_mail.send_thread(error_msg,thd_id,msg_id,first)
+                #msg_id=send_mail.send_thread(error_msg,thd_id,msg_id,first)
                 update_status.update_error_status(msg_id,msg_id,first)
                 err_msg=1
             except Exception as err:
