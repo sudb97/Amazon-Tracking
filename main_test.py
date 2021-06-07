@@ -30,7 +30,7 @@ while True:
             update_status.update_info_status(cur_stat,msg_id,msg_id,first,line_no)
                 
                 
-        print("Tracked Fitbit charge 4 price: ",now)
+        print("Tracked File",now)
         fails=0                          #after a success the fails counter is brought back to zero
         err_msg=0
         time.sleep(3600)
@@ -38,7 +38,7 @@ while True:
         fails=fails+1
         if fails>=3 and err_msg==0:
             try:                                     #this part will send email message in case of there is any failure in tracking
-                error_msg="Failed to track the product for 3 consecutive times, latest at: "+str(now)+" Please see the server logs, ASAP!!!"
+                error_msg="Alert.......................... "+str(now)
                 thd_id,msg_id,first,line_no=prev_status.read_msg_status()
                 msg_id=send_mail.send_thread(error_msg,thd_id,msg_id,first)
                 update_status.update_error_status(msg_id,msg_id,first)
@@ -46,8 +46,8 @@ while True:
             except Exception as err:
                 pass
             
-        print("Failed to track the product at: "+str(now)+" Error: "+str(e)+". Trying again...")
-        time.sleep(900)       
+        print("Cannot track ............."+str(now)+str(e)+" Please Trying again...")
+        time.sleep(900)         
 
         
 
