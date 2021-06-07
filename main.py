@@ -14,23 +14,22 @@ err_msg=0           #tracks if error email msg is sent or not
 
 print("The app started")
 while True:
-    try:
-        now = datetime.now()
+       now = datetime.now()
         
-        cur_stat=cur_status.tkt_status()
+       cur_stat=cur_status.tkt_status()
 
-        if prev_status.read_tkt_status()!=cur_stat:
-            thd_id,msg_id,first,line_no=prev_status.read_msg_status()
+       if prev_status.read_tkt_status()!=cur_stat:
+           thd_id,msg_id,first,line_no=prev_status.read_msg_status()
             
-            if Decimal(sub(r'[^\d.]', '',cur_stat)) <= 10500.00:
+           if Decimal(sub(r'[^\d.]', '',cur_stat)) <= 10500.00:
                 #msg_id=send_mail.send_thread('The price is '+cur_stat+' at '+str(now),thd_id,msg_id,first)        #sending the mail with updated price if price above threshold
                
-            update_price_history.update_price(cur_stat,line_no,now)                           #updating the excel sheet with the price to maintain price history                line_no=str(int(line_no)+1)
-            line_no=str(int(line_no)+1)
-            update_status.update_info_status(cur_stat,msg_id,msg_id,first,line_no)
+           update_price_history.update_price(cur_stat,line_no,now)                           #updating the excel sheet with the price to maintain price history                line_no=str(int(line_no)+1)
+           line_no=str(int(line_no)+1)
+           update_status.update_info_status(cur_stat,msg_id,msg_id,first,line_no)
                 
                 
-        print("Tracked File",now)
-        fails=0                          #after a success the fails counter is brought back to zero
-        err_msg=0
-        time.sleep(3600)
+       print("Tracked File",now)
+       fails=0                          #after a success the fails counter is brought back to zero
+       err_msg=0
+       time.sleep(3600)
