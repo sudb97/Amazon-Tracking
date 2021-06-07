@@ -34,20 +34,21 @@ while True:
         fails=0                          #after a success the fails counter is brought back to zero
         err_msg=0
         time.sleep(3600)
+   #this part tracks if problem occurs in sending email
     except Exception as e:
         fails=fails+1
         if fails>=3 and err_msg==0:
-            try:                                     #this part will send email message in case of there is any failure in tracking
+            try:
                 error_msg="Alert.......................... "+str(now)
                 thd_id,msg_id,first,line_no=prev_status.read_msg_status()
-                #msg_id=send_mail.send_thread(error_msg,thd_id,msg_id,first)
+                msg_id=send_mail.send_thread(error_msg,thd_id,msg_id,first)
                 update_status.update_error_status(msg_id,msg_id,first)
                 err_msg=1
             except Exception as err:
                 pass
             
         print("Cannot track ............."+str(now)+str(e)+" Please Trying again...")
-        time.sleep(900)         
+        time.sleep(900)     
 
         
 
